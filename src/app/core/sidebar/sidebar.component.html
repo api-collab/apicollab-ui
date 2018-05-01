@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="user-profile">
+        <div class="user-profile-text">
+            <a>Markarn Doe</a>
+        </div>
+    </div>
+    <mat-list>
+        <mat-list-item *ngFor="let listItem of items">
+
+            <mat-icon class="list-icon-color" mat-list-icon>{{listItem.icon}}</mat-icon>
+            <a [routerLink]="listItem.url">
+                <h4 mat-line>{{listItem.name}}</h4>
+            </a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+
+</div>

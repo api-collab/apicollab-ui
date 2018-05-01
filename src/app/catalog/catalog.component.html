@@ -1,0 +1,58 @@
+<div class="root">
+    <div>
+        <mat-card class="hero">
+            <mat-card-header>
+                <mat-card-title class="search-box-title">API Catalog</mat-card-title>
+                <mat-card-subtitle>Explore your APIs</mat-card-subtitle>
+            </mat-card-header>
+            <div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="search-box-container">
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?" #searchBox id="search-box" (keyup)="search(searchBox.value)">
+                <button type="submit" class="searchButton">
+                        <mat-icon>search</mat-icon>
+                    </button>
+            </div>
+        </div>
+
+        <span class="spacer"></span>
+
+    </div>
+
+    <div [hidden]="searchBox.value">
+        <mat-card *ngFor="let api of apis$ | async; let i = index" class="api-listing">
+            <mat-card-header>
+                <mat-card-title>{{api.title}}</mat-card-title>
+                <mat-card-subtitle>{{api.description}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions class="api-listing-action">
+                <a routerLink="/api" [queryParams]="{id: api.id}">
+                    <button mat-button>View API</button>
+                </a>
+                <mat-chip-list>
+                    <mat-chip>{{api.group}}</mat-chip>
+                    <mat-chip>v{{api.version}}</mat-chip>
+                </mat-chip-list>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div [hidden]="!searchBox.value">
+        <mat-card *ngFor="let api of searchApiResults$ | async; let i = index" class="api-listing">
+            <mat-card-header>
+                <mat-card-title>{{api.title}}</mat-card-title>
+                <mat-card-subtitle>{{api.description}} </mat-card-subtitle>
+
+            </mat-card-header>
+            <mat-card-actions class="api-listing-action">
+                <a routerLink="/api" [queryParams]="{id: api.id}">
+                    <button mat-button>View API</button>
+                </a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
