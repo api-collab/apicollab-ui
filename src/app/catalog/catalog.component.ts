@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
+import { ApiInfoList } from '../core/models/api-info-list';
 
 const urlPrefix = '/api?url=';
 @Component({
@@ -18,8 +19,8 @@ const urlPrefix = '/api?url=';
 export class CatalogComponent implements OnInit {
 
   private searchTerms = new Subject<string>();
-  apis$: Observable<ApiInfo[]>;
-  searchApiResults$: Observable<ApiInfo[]>;
+  apis$: Observable<ApiInfoList>;
+  searchApiResults$: Observable<ApiInfoList>;
   constructor(private service: ApiInfoService) { }
 
   // Push a search term into the observable stream.

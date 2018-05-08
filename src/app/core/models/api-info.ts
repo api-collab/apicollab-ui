@@ -1,7 +1,9 @@
 export class ApiInfo {
-    Id: String;
-    title: String;
+    apiId: String;
+    name: String;
     desription: String;
     version: String;
-    data: String;
+    apiSpec: String;
+    status: String;
+    tags: Array<String>;
 }

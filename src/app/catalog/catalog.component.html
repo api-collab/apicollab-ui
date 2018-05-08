@@ -23,11 +23,10 @@
         <span class="spacer"></span>
 
     </div>
-
     <div [hidden]="searchBox.value">
-        <mat-card *ngFor="let api of apis$ | async; let i = index" class="api-listing">
+        <mat-card *ngFor="let api of (apis$ | async)?.apis; let i = index" class="api-listing">
             <mat-card-header>
-                <mat-card-title>{{api.title}}</mat-card-title>
+                <mat-card-title>{{api.name}}</mat-card-title>
                 <mat-card-subtitle>{{api.description}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-actions class="api-listing-action">
@@ -35,7 +34,9 @@
                     <button mat-button>View API</button>
                 </a>
                 <mat-chip-list>
-                    <mat-chip>{{api.group}}</mat-chip>
+                    <mat-chip *ngFor="let tag of api?.tags">
+                        {{tag}}
+                    </mat-chip>
                     <mat-chip>v{{api.version}}</mat-chip>
                 </mat-chip-list>
             </mat-card-actions>
@@ -43,9 +44,9 @@
     </div>
 
     <div [hidden]="!searchBox.value">
-        <mat-card *ngFor="let api of searchApiResults$ | async; let i = index" class="api-listing">
+        <mat-card *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index" class="api-listing">
             <mat-card-header>
-                <mat-card-title>{{api.title}}</mat-card-title>
+                <mat-card-title>{{api.name}}</mat-card-title>
                 <mat-card-subtitle>{{api.description}} </mat-card-subtitle>
 
             </mat-card-header>
@@ -53,6 +54,12 @@
                 <a routerLink="/api" [queryParams]="{id: api.id}">
                     <button mat-button>View API</button>
                 </a>
+                <mat-chip-list>
+                    <mat-chip>v{{api.version}}</mat-chip>
+                    <mat-chip *ngFor="let tag of api?.tags">
+                        {{tag}}
+                    </mat-chip>
+                </mat-chip-list>
             </mat-card-actions>
         </mat-card>
     </div>

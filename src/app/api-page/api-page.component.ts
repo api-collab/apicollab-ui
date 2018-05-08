@@ -24,7 +24,7 @@ export class ApiPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.descriptionUrl = this.route.queryParamMap.map(param => url + param.get('id') + '/doc');
+    this.descriptionUrl = this.route.queryParamMap.map(param => url + param.get('id') + '/swaggerDoc');
   }
 
 }

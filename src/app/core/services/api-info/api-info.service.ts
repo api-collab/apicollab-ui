@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { UrlHandlingStrategy } from '@angular/router';
+import { ApiInfoList } from '../../models/api-info-list';
 
 
 const apiInfoUrl = 'http://localhost:8080/apis';
@@ -12,25 +13,25 @@ const apiInfoUrl = 'http://localhost:8080/apis';
 export class ApiInfoService {
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<ApiInfo[]> {
-        return this.http.get<ApiInfo[]>(apiInfoUrl)
+    getAll(): Observable<ApiInfoList> {
+        return this.http.get<ApiInfoList>(apiInfoUrl)
         .pipe(
             tap(heroes => console.log(`fetched apis`)),
-            catchError(this.handleError('getAll', []))
+            catchError(this.handleError('getAll', new ApiInfoList()))
         );
     }
 
 
-    search(term: string): Observable<ApiInfo[]> {
+    search(term: string): Observable<ApiInfoList> {
         if (!term.trim()) {
             // if not search term, return all
-            return this.http.get<ApiInfo[]>(apiInfoUrl);
+            return this.http.get<ApiInfoList>(apiInfoUrl);
         }
         const url = `${apiInfoUrl}?query=${term}`;
-        return this.http.get<ApiInfo[]>(url)
+        return this.http.get<ApiInfoList>(url)
             .pipe(
                 tap(heroes => console.log(`fetched apis`)),
-                catchError(this.handleError('getAll', []))
+                catchError(this.handleError('getAll', new ApiInfoList))
             );
     }
 
