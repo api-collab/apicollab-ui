@@ -4,8 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ApiInfoService } from '../core/services/api-info/api-info.service';
 import { ApiInfo } from '../core/models/api-info';
+import { environment } from './../../environments/environment';
 
-const url =  '/assets/swagger/renderer.html?url=http://localhost:8080/apis/';
+const url =  `/assets/swagger/renderer.html?url=${environment.API_ROOT}/apis/`;
 
 @Component({
   selector: 'app-api-page',

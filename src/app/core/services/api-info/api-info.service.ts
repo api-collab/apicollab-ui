@@ -7,8 +7,9 @@ import { of } from 'rxjs/observable/of';
 import { UrlHandlingStrategy } from '@angular/router';
 import { ApiInfoList } from '../../models/api-info-list';
 
+import { environment } from '../../../../environments/environment';
 
-const apiInfoUrl = 'http://localhost:8080/apis';
+const apiInfoUrl = `${environment.API_ROOT}/apis`;
 @Injectable()
 export class ApiInfoService {
     constructor(private http: HttpClient) { }
