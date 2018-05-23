@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@mixin login-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    .header {
+        background-color: mat-color($primary);
+    }
+    .root {
+        background-color: #fff;
+        color: #d2d2d2;
+    }
+    .title {
+        color: whitesmoke;
+    }
+}
