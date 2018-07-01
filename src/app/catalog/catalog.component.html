@@ -1,15 +1,15 @@
 <div class="root">
+    <!-- Hero -->
     <div>
         <mat-card class="hero">
             <mat-card-header>
                 <mat-card-title class="search-box-title">API Catalog</mat-card-title>
                 <mat-card-subtitle>Explore your APIs</mat-card-subtitle>
             </mat-card-header>
-            <div>
-            </div>
         </mat-card>
     </div>
 
+    <!-- Search Box -->
     <div class="search-box-container">
         <div class="wrap">
             <div class="search">
@@ -21,43 +21,19 @@
         </div>
         <span class="spacer"></span>
     </div>
+
+    <!-- All APIs -->
     <div [hidden]="searchBox.value">
-        <mat-card *ngFor="let api of (apis$ | async)?.apis; let i = index" class="api-listing">
-            <mat-card-header>
-                <mat-card-title>{{api.name}}</mat-card-title>
-                <mat-card-subtitle>{{api.description}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-actions class="api-listing-action">
-                <a routerLink="/api" [queryParams]="{id: api.id}">
-                    <button mat-button>View API</button>
-                </a>
-                <mat-chip-list>
-                    <mat-chip *ngFor="let tag of api?.tags">
-                        {{tag}}
-                    </mat-chip>
-                    <mat-chip>v{{api.version}}</mat-chip>
-                </mat-chip-list>
-            </mat-card-actions>
-        </mat-card>
+        <div *ngFor="let api of (apis$ | async)?.apis; let i = index">
+            <app-api-card [apiInfo]=api>
+            </app-api-card>
+        </div>
     </div>
 
+    <!-- Search Results -->
     <div [hidden]="!searchBox.value">
-        <mat-card *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index" class="api-listing">
-            <mat-card-header>
-                <mat-card-title>{{api.name}}</mat-card-title>
-                <mat-card-subtitle>{{api.description}} </mat-card-subtitle>
-
-            </mat-card-header>
-            <mat-card-actions class="api-listing-action">
-                <a routerLink="/api" [queryParams]="{id: api.id}">
-                    <button mat-button>View API</button>
-                </a>
-                <mat-chip-list>
-                    <mat-chip>v{{api.version}}</mat-chip>
-                    <mat-chip *ngFor="let tag of api?.tags">
-                        {{tag}}
-                    </mat-chip>
-                </mat-chip-list>
-            </mat-card-actions>
-        </mat-card>
+        <div *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index">
+            <app-api-card [apiInfo]=api>
+            </app-api-card>
+        </div>
     </div>

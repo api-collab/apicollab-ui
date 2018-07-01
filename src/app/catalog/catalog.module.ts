@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CatalogComponent } from './catalog.component';
 import { SharedModule } from '../shared/shared.module';
 import { CatalogRoutingModule } from './catalog-routing.module';
+import { ApiCardComponent } from './components/api-card/api-card.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { CatalogRoutingModule } from './catalog-routing.module';
     CatalogRoutingModule
   ],
   declarations: [
-    CatalogComponent
+    CatalogComponent,
+    ApiCardComponent
   ],
   exports: [
     CatalogComponent

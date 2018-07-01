@@ -1,0 +1,19 @@
+<div class="api-card" routerLink="/api" [queryParams]="{id: apiInfo.id}">
+  <mat-card class="api-mat-card">
+    <mat-card-header>
+      <mat-card-title>{{apiInfo.name}}</mat-card-title>
+      <mat-card-subtitle>{{apiInfo.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="api-card-action">
+      <a routerLink="/api" [queryParams]="{id: apiInfo.id}">
+        <button mat-button>View API</button>
+      </a>
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of apiInfo?.tags">
+          {{tag}}
+        </mat-chip>
+        <mat-chip>v{{apiInfo.version}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-actions>
+  </mat-card>
+</div>
