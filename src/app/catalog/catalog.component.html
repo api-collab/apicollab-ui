@@ -15,13 +15,11 @@
             <div class="search">
                 <input type="text" class="searchTerm" placeholder="What are you looking for?" #searchBox id="search-box" (keyup)="search(searchBox.value)">
                 <button type="submit" class="searchButton">
-                        <mat-icon>search</mat-icon>
-                    </button>
+                    <mat-icon>search</mat-icon>
+                </button>
             </div>
         </div>
-
         <span class="spacer"></span>
-
     </div>
     <div [hidden]="searchBox.value">
         <mat-card *ngFor="let api of (apis$ | async)?.apis; let i = index" class="api-listing">
