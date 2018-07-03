@@ -18,18 +18,26 @@
             </div>
         </div>
     </div>
-    <!-- All APIs -->
-    <div [hidden]="searchBox.value">
-        <div *ngFor="let api of (apis$ | async)?.apis; let i = index">
-            <app-api-card [apiInfo]=api>
-            </app-api-card>
+    <div class="search-results-container">
+
+        <div [hidden]="searchBox.value">
+            <!-- All APIs -->
+            <div class="search-results-wrapper">
+                <div class="search-result" *ngFor="let api of (apis$ | async)?.apis; let i = index">
+                    <app-api-card [apiInfo]=api>
+                    </app-api-card>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- Search Results -->
-    <div [hidden]="!searchBox.value">
-        <div *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index">
-            <app-api-card [apiInfo]=api>
-            </app-api-card>
+
+        <!-- Search Results -->
+        <div [hidden]="!searchBox.value">
+            <div class="search-results-wrapper">
+                <div class="search-result" *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index">
+                    <app-api-card [apiInfo]=api>
+                    </app-api-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>

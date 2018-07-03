@@ -1,5 +1,45 @@
+.root {
+  height: 100%;
+}
+
+.example-panel {
+  background: rgba(49, 182, 15, 0.5);
+}
 .container {
-    width: 100%;
-    overflow: hidden;
-    height: 100%;
+  width: 100%;
+
+  height: 70vh;
+}
+
+.jumbo {
+  height: 250px;
+}
+
+.api-info-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20%;
+  padding-top: 38px;
+}
+
+.api-info-container-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.api-info-container-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.api-info-title {
+  font: 400 34px/40px Roboto, 'Helvetica Neue', sans-serif;
+  display: inline-block;
+  font-weight: lighter;
+}
+
+.api-info-subtitle {
+  font: 400 15px/20px Roboto, 'Helvetica Neue', sans-serif;
+  display: inline-block;
 }
