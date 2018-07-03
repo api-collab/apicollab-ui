@@ -1,28 +1,25 @@
 .root {
   margin: 0px;
   min-height: 80vh;
-  padding: 20px;
+  padding: 0px;
 }
 
 .hero {
   width: 100%;
   margin-bottom: 20px;
   box-shadow: none !important;
-  background: none;
+  height: 192px;
 }
 
 .hero-icon {
   font-size: 250px;
 }
 
-.search-box-container {
-  height: 50px;
-  color: white;
-}
-
-.search-box-title {
-  font-weight: 300;
-  font-size: 50px;
+.hero-title {
+  font: 400 34px/40px Roboto, 'Helvetica Neue', sans-serif;
+  margin-top: 38px;
+  margin-left: 20%;
+  display: inline-block;
 }
 
 .search {
@@ -33,37 +30,30 @@
 .searchTerm {
   float: left;
   width: 100%;
-  border: 3px solid #00b4cc;
   padding: 5px;
   height: 20px;
   border-radius: 5px;
   outline: none;
-  color: #9dbfaf;
-}
-
-.searchTerm:focus {
-  color: #00b4cc;
 }
 
 .searchButton {
   position: absolute;
-  right: -50px;
+  right: -47px;
   width: 40px;
-  height: 36px;
-  border: 1px solid #00b4cc;
-  background: #00b4cc;
+  height: 31px;
   text-align: center;
-  color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17px;
+  top: 1px;
 }
 
 /*Resize the wrap to see the search bar change!*/
 
-.wrap {
-  width: 30%;
+.searchbox {
+  width: 60%;
   position: absolute;
   left: 50%;
+  top: 129px;
   transform: translate(-50%, -50%);
 }

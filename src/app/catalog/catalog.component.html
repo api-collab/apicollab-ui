@@ -1,27 +1,23 @@
 <div class="root">
     <!-- Hero -->
     <div>
-        <mat-card class="hero">
-            <mat-card-header>
-                <mat-card-title class="search-box-title">API Catalog</mat-card-title>
-                <mat-card-subtitle>Explore your APIs</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </div>
-
-    <!-- Search Box -->
-    <div class="search-box-container">
-        <div class="wrap">
-            <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?" #searchBox id="search-box" (keyup)="search(searchBox.value)">
-                <button type="submit" class="searchButton">
-                    <mat-icon>search</mat-icon>
-                </button>
+        <div class="hero">
+            <div>
+                <span class="hero-title">Your API Catalog</span>
+            </div>
+            <div class="search-box-container">
+                <div class="searchbox">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="What are you looking for?" #searchBox id="search-box" (keyup)="search(searchBox.value)">
+                        <button type="submit" class="searchButton">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <span class="spacer"></span>
             </div>
         </div>
-        <span class="spacer"></span>
     </div>
-
     <!-- All APIs -->
     <div [hidden]="searchBox.value">
         <div *ngFor="let api of (apis$ | async)?.apis; let i = index">
@@ -29,7 +25,6 @@
             </app-api-card>
         </div>
     </div>
-
     <!-- Search Results -->
     <div [hidden]="!searchBox.value">
         <div *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index">
@@ -37,3 +32,4 @@
             </app-api-card>
         </div>
     </div>
+</div>
