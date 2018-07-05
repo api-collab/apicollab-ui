@@ -35,7 +35,7 @@ export class ApiPageComponent implements OnInit, AfterViewInit {
     const ui = SwaggerUI({
       url: `${environment.API_ROOT}/apis/${this.apiId}/swaggerDoc`,
       domNode: this.el.nativeElement.querySelector('#swagger-ui'),
-      deepLinking: true,
+      deepLinking: false,
       presets: [SwaggerUI.presets.apis]
     });
   }
