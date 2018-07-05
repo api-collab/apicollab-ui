@@ -34,6 +34,19 @@ export class ApiInfoService {
   }
 
   /**
+   * Get specific API
+   */
+  getApi(apiId: String): Observable<ApiInfo> {
+    const url = `${apiInfoUrl}/${apiId}`;
+    console.log(`Fetching API ${apiId}`);
+
+    return this.http.get<ApiInfo>(url).pipe(
+      tap(heroes => console.log(`fetched apis`)),
+      catchError(this.handleError('getApi', null))
+    );
+  }
+
+  /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed

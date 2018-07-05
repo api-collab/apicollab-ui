@@ -5,23 +5,19 @@ import { ApiInfo } from '../core/models/api-info';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ApiInfoList } from '../core/models/api-info-list';
 
-const urlPrefix = '/api?url=';
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-
   private searchTerms = new Subject<string>();
   apis$: Observable<ApiInfoList>;
   searchApiResults$: Observable<ApiInfoList>;
-  constructor(private service: ApiInfoService) { }
+  constructor(private service: ApiInfoService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -37,8 +33,7 @@ export class CatalogComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.service.search(term)),
+      switchMap((term: string) => this.service.search(term))
     );
   }
-
 }
