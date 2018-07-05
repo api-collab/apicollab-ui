@@ -1,37 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { ApiInfoService } from '../core/services/api-info/api-info.service';
 import { ApiInfo } from '../core/models/api-info';
 import { environment } from './../../environments/environment';
-import { APP_ID_RANDOM_PROVIDER } from '@angular/core/src/application_tokens';
-
-const url = `/assets/swagger/renderer.html?url=${environment.API_ROOT}/apis/`;
+var SwaggerUI = require('swagger-ui');
 
 @Component({
   selector: 'app-api-page',
   templateUrl: './api-page.component.html',
   styleUrls: ['./api-page.component.scss']
 })
-export class ApiPageComponent implements OnInit {
+export class ApiPageComponent implements OnInit, AfterViewInit {
   apiInfo$: Observable<ApiInfo>;
   descriptionUrl: string;
-  constructor(private route: ActivatedRoute, private router: Router, private service: ApiInfoService) {
+  el: ElementRef;
+  apiId: string;
+
+  constructor(
+    private _elemRef: ElementRef,
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ApiInfoService
+  ) {
+    this.el = _elemRef;
     this.route.queryParamMap.subscribe(param => {
+      this.apiId = param.get('id');
       this.fetchApiInfo(param.get('id'));
     });
   }
-
-  ngOnInit() {
-    // this.descriptionUrl = this.route.queryParamMap.map(param => url + param.get('id') + '/swaggerDoc');
+  ngAfterViewInit() {
+    const ui = SwaggerUI({
+      url: `${environment.API_ROOT}/apis/${this.apiId}/swaggerDoc`,
+      domNode: this.el.nativeElement.querySelector('#swagger-ui'),
+      deepLinking: true,
+      presets: [SwaggerUI.presets.apis]
+    });
   }
+
+  ngOnInit() {}
+
   fetchApiInfo(id: string) {
     console.log('Fetching APIs');
-    this.descriptionUrl = url + id + '/swaggerDoc';
     this.apiInfo$ = this.service.getApi(id);
   }
 }
