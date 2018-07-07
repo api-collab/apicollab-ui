@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiInfoService } from '../core/services/api-info/api-info.service';
 import { ApiInfo } from '../core/models/api-info';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  Subject ,  of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ApiInfoList } from '../core/models/api-info-list';
 
