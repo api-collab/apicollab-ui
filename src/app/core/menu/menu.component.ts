@@ -7,19 +7,16 @@ import { MatDrawer } from '@angular/material';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
   user = 'Kartik';
   searchBoxVisible = false;
+
   @Input() sideBar: MatDrawer;
 
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   setSearchVisiblility(show: boolean) {
     this.searchBoxVisible = show;
   }
-
 }

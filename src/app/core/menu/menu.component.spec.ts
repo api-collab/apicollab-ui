@@ -2,15 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuComponent } from './menu.component';
 
+import { SharedModule } from './../../shared';
+
 describe('menuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuComponent ]
-    })
-    .compileComponents();
+      imports: [SharedModule],
+      declarations: [MenuComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

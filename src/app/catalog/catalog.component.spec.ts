@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CatalogComponent } from './catalog.component';
+import { SharedModule } from './../shared';
+import { CoreModule } from './../core';
+import { ApiCardComponent } from './components/api-card/api-card.component';
 
 describe('CatalogComponent', () => {
   let component: CatalogComponent;
@@ -8,9 +11,9 @@ describe('CatalogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CatalogComponent ]
-    })
-    .compileComponents();
+      declarations: [CatalogComponent, ApiCardComponent],
+      imports: [SharedModule, CoreModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

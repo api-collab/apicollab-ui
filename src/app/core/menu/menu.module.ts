@@ -6,17 +6,8 @@ import { MenuComponent } from './menu.component';
 import { SharedModule } from '../../shared';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    AvatarModule
-  ],
-  declarations: [
-    MenuComponent
-  ],
-  exports: [
-    MenuComponent
-  ]
+  imports: [CommonModule, SharedModule, AvatarModule],
+  declarations: [MenuComponent],
+  exports: [MenuComponent]
 })
-export class MenuModule {
-}
+export class MenuModule {}

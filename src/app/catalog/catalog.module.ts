@@ -6,17 +6,8 @@ import { CatalogRoutingModule } from './catalog-routing.module';
 import { ApiCardComponent } from './components/api-card/api-card.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    CatalogRoutingModule
-  ],
-  declarations: [
-    CatalogComponent,
-    ApiCardComponent
-  ],
-  exports: [
-    CatalogComponent
-  ]
+  imports: [CommonModule, SharedModule, CatalogRoutingModule],
+  declarations: [CatalogComponent, ApiCardComponent],
+  exports: [CatalogComponent, SharedModule]
 })
-export class CatalogModule { }
+export class CatalogModule {}

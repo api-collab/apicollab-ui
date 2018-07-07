@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApiCardComponent } from './api-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from './../../../shared';
+import { CoreModule } from './../../../core';
 
 describe('ApiCardComponent', () => {
   let component: ApiCardComponent;
@@ -8,9 +11,9 @@ describe('ApiCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApiCardComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, SharedModule, CoreModule],
+      declarations: [ApiCardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
