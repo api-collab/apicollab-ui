@@ -1,0 +1,19 @@
+<div class="search-results-wrapper">
+  <div *ngIf="'items' && 'items.length > 0';then results else noResults"></div>
+
+  <ng-template #results>
+    <div class="search-result" *ngFor="let apiInfo of items; let i = index">
+      <app-api-card [apiInfo]=apiInfo></app-api-card>
+    </div>
+  </ng-template>
+  <ng-template #noResults>
+    <div class="no-results-container">
+      <div>
+        <mat-icon class="search-icon">search</mat-icon>
+      </div>
+      <h2 class="mat-display2">
+        Oops, looks like no APIs found...
+      </h2>
+    </div>
+  </ng-template>
+</div>

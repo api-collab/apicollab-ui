@@ -2,16 +2,15 @@
 
 .api-card {
   margin-top: 20px;
-  :hover {
+
+  &:hover {
     cursor: pointer;
+    @include mat-elevation(8);
   }
   width: 100%;
 }
 
 .api-mat-card {
-  &:hover {
-    @include mat-elevation(8);
-  }
 }
 
 .api-card-action {

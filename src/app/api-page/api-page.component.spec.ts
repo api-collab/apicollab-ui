@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiInfoService } from '../core/services/api-info/api-info.service';
+import { NotificationService } from '../core/services/notification/notification.service';
 
 import { ApiPageComponent } from './api-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -21,7 +22,8 @@ describe('ApiPageComponent', () => {
         {
           provide: ApiInfoService,
           useClass: MockDummyService
-        }
+        },
+        NotificationService
       ]
     }).compileComponents();
   }));

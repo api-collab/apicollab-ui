@@ -1,43 +1,25 @@
 <div class="root">
-    <!-- Hero -->
-    <div>
-        <div class="hero">
-            <div>
-                <span class="hero-title">Your API Catalog</span>
-            </div>
-            <div class="search-box-container">
-                <div class="searchbox">
-                    <div class="search">
-                        <input type="text" class="searchTerm" placeholder="What are you looking for?" #searchBox id="search-box" (keyup)="search(searchBox.value)">
-                        <button type="submit" class="searchButton">
-                            <mat-icon>search</mat-icon>
-                        </button>
-                    </div>
-                </div>
-                <span class="spacer"></span>
-            </div>
-        </div>
+  <!-- Hero -->
+  <mat-card>
+    <div class="hero">
+      <h2 class="mat-display-2">Explore.Build.Amaze</h2>
+      <app-search-box class="search-box-container" (searchTerms)="onSearchTerms($event)"></app-search-box>
     </div>
-    <div class="search-results-container">
-
-        <div [hidden]="searchBox.value">
-            <!-- All APIs -->
-            <div class="search-results-wrapper">
-                <div class="search-result" *ngFor="let api of (apis$ | async)?.apis; let i = index">
-                    <app-api-card [apiInfo]=api>
-                    </app-api-card>
-                </div>
-            </div>
-        </div>
-
-        <!-- Search Results -->
-        <div [hidden]="!searchBox.value">
-            <div class="search-results-wrapper">
-                <div class="search-result" *ngFor="let api of (searchApiResults$ | async)?.apis; let i = index">
-                    <app-api-card [apiInfo]=api>
-                    </app-api-card>
-                </div>
-            </div>
-        </div>
+  </mat-card>
+  <!-- Search Results-->
+  <div class="search-results-container">
+    <div *ngIf="searchApiResults$ | async as results">
+      <!-- Search Results -->
+      <p>Query returned {{results.apis.length}} result(s) for
+        <i>{{searchPhrase}}</i>
+      </p>
+      <app-catalog-list [items]="results.apis"></app-catalog-list>
     </div>
+
+    <div *ngIf="searchPhrase.length === 0">
+      <div *ngIf="apis$ | async as results">
+        <app-catalog-list [items]="results.apis"></app-catalog-list>
+      </div>
+    </div>
+  </div>
 </div>

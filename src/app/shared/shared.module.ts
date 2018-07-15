@@ -5,17 +5,7 @@ import { MaterialModule } from './material/material.module';
 import { Routes, RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    HttpClientModule,
-  ],
-  exports: [
-    MaterialModule,
-    RouterModule,
-    RouterModule,
-    HttpClientModule,
-  ],
-  declarations: []
+  imports: [CommonModule, RouterModule, HttpClientModule],
+  exports: [MaterialModule, RouterModule, RouterModule, HttpClientModule]
 })
 export class SharedModule {}

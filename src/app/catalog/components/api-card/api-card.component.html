@@ -1,5 +1,5 @@
-<div *ngIf="apiInfo" class="api-card" routerLink="/api" [queryParams]="{id: apiInfo.id}">
-  <mat-card class="api-mat-card">
+<div *ngIf="apiInfo" class="api-card" routerLink='/api' [queryParams]="{id: apiInfo.id}">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>{{apiInfo.name}}</mat-card-title>
       <mat-card-subtitle>{{apiInfo.description}}</mat-card-subtitle>

@@ -6,8 +6,7 @@
   $forground: map-get($theme, foreground);
 
   .hero {
-    background-color: mat-color($primary);
-    color: mat-color($accent, default-contrast);
+    background-color: mat-color($primary, default-contrast);
   }
 
   .searchTerm {

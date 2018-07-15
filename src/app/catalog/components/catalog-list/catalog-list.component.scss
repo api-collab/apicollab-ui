@@ -1,0 +1,25 @@
+.search-results-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+}
+.search-result {
+  width: 47%;
+  margin: 10px;
+  z-index: 0;
+}
+
+.no-results-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+.search-icon {
+  width: 100%;
+  font-size: 90px;
+  height: 100%;
+}
