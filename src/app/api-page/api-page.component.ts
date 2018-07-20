@@ -2,11 +2,10 @@ import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-
 import { ApiInfoService } from '../core/services/api-info/api-info.service';
 import { ApiInfo } from '../core/models/api-info';
 import { environment } from './../../environments/environment';
-var SwaggerUI = require('swagger-ui');
+const SwaggerUI = require('swagger-ui');
 
 @Component({
   selector: 'app-api-page',
@@ -32,7 +31,7 @@ export class ApiPageComponent implements OnInit, AfterViewInit {
     });
   }
   ngAfterViewInit() {
-    const ui = SwaggerUI({
+    SwaggerUI({
       url: `${environment.API_ROOT}/apis/${this.apiId}/swaggerDoc`,
       domNode: this.el.nativeElement.querySelector('#swagger-ui'),
       deepLinking: false,
