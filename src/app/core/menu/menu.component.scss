@@ -21,8 +21,8 @@ $search-input-height: 64px;
 
 .search-box-container {
   width: 100%;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   z-index: 1;
   position: absolute;
   height: $menu-height;
@@ -33,11 +33,11 @@ $search-input-height: 64px;
 .search-box-input {
   height: $search-input-height;
   width: 100%;
-  border: 0px;
+  border: 0;
   line-height: 25px;
   padding: 10px;
   font-size: 22px;
-  padding: 0px;
+  padding: 0;
 }
 
 .search-box-button {
