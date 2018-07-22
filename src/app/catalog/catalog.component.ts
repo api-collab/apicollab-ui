@@ -3,7 +3,8 @@ import { ApiInfoService } from '../core/services/api-info/api-info.service';
 
 import { Observable, Subject, of } from 'rxjs';
 import { distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
-import { ApiInfoList } from '../core/models/api-info-list';
+import { WrappedCollection } from '../core/models/wrapped-collection';
+import { ApiInfo } from '../core/models/api-info';
 
 @Component({
   selector: 'app-catalog',
@@ -12,8 +13,8 @@ import { ApiInfoList } from '../core/models/api-info-list';
 })
 export class CatalogComponent implements OnInit {
   private searchTerms = new Subject<string>();
-  apis$: Observable<ApiInfoList>;
-  searchApiResults$: Observable<ApiInfoList>;
+  apis$: Observable<WrappedCollection<ApiInfo>>;
+  searchApiResults$: Observable<WrappedCollection<ApiInfo>>;
   searchPhrase = '';
   constructor(private service: ApiInfoService) {}
 
