@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiInfo } from '../../models/api-info';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { ApiInfoList } from '../../models/api-info-list';
+import { catchError, tap } from 'rxjs/operators';
+import { WrappedCollection } from '../../models/wrapped-collection';
 
 import { environment } from '../../../../environments/environment';
 import { NotificationService } from '../notification/notification.service';
@@ -20,43 +20,43 @@ const NotifErrorGetApi = new Notification('Failed to retrieve the API', Notifica
 export class ApiInfoService {
   constructor(private http: HttpClient, private notificationService: NotificationService) {}
 
-  getAll(): Observable<ApiInfoList> {
-    return this.http.get<ApiInfoList>(apiInfoUrl).pipe(
-      tap(heroes => console.log(`fetched all apis`)),
-      catchError(this.handleError('getAll', NotifErrorListApi, new ApiInfoList()))
+  getAll(): Observable<WrappedCollection<ApiInfo>> {
+    return this.http.get<WrappedCollection<ApiInfo>>(apiInfoUrl).pipe(
+      tap(() => console.log(`fetched all apis`)),
+      catchError(this.handleError(NotifErrorListApi, new WrappedCollection<ApiInfo>()))
     );
   }
 
-  search(term: string): Observable<ApiInfoList> {
+  search(term: string): Observable<WrappedCollection<ApiInfo>> {
     if (!term.trim()) {
       // if not search term, return all
-      return this.http.get<ApiInfoList>(apiInfoUrl);
+      return this.http.get<WrappedCollection<ApiInfo>>(apiInfoUrl);
     }
     const url = `${apiInfoUrl}/search?query=${term}`;
-    return this.http.get<ApiInfoList>(url).pipe(
+    return this.http.get<WrappedCollection<ApiInfo>>(url).pipe(
       tap(() => console.log(`fetched search results`)),
-      catchError(this.handleError('search', NotifErrorSearchApi, new ApiInfoList()))
+      catchError(this.handleError(NotifErrorSearchApi, new WrappedCollection<ApiInfo>()))
     );
   }
 
-  autoComplete(keyword: string): Observable<String[]> {
+  autoComplete(keyword: string): Observable<WrappedCollection<string>> {
     const url = `${environment.API_ROOT}/suggestions/${keyword}`;
-    return this.http.get<String[]>(url).pipe(
+    return this.http.get<WrappedCollection<string>>(url).pipe(
       tap(suggestions => console.log(`fetched suggestions`, suggestions)),
-      catchError(this.handleError('autocomplete', NotifErrorAutoComplete, Array()))
+      catchError(this.handleError(NotifErrorAutoComplete, new WrappedCollection<string>()))
     );
   }
 
   /**
    * Get specific API
    */
-  getApi(apiId: String): Observable<ApiInfo> {
+  getApi(apiId: string): Observable<ApiInfo> {
     const url = `${apiInfoUrl}/${apiId}`;
     console.log(`Fetching API ${apiId}`);
 
     return this.http.get<ApiInfo>(url).pipe(
-      tap(apiInfo => console.log(`fetched API`)),
-      catchError(this.handleError('getApi', NotifErrorGetApi, null))
+      tap(() => console.log(`fetched API`)),
+      catchError(this.handleError(NotifErrorGetApi, null))
     );
   }
 
@@ -66,13 +66,13 @@ export class ApiInfoService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', notification: Notification, result?: T) {
+  private handleError<T>(notification: Notification, result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
       if (notification) {
         this.notificationService.notify(notification);
       }
-      return of(result as T);
+      return of(result);
     };
   }
 }
