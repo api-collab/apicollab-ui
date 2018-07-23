@@ -39,7 +39,8 @@ export class SearchBoxComponent implements OnInit {
   }
 
   onOptionSelected(autocomplete: MatAutocomplete, value: string) {
-    this.trigger.closePanel();
+
+    this.trigger.closePanel();// close the autocomplete while hit enter
     this.searchTerms.emit(value);
   }
 
