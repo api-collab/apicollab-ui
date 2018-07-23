@@ -62,13 +62,13 @@ export class SearchBoxComponent implements OnInit {
       keyword = searchPhrase;
     } else {
       // Multiple words
-      prefix = searchPhrase.substr(0, middlePoint);
+      prefix = searchPhrase.substr(0, middlePoint) + SPACE;
       keyword = searchPhrase.substr(middlePoint + 1);
     }
 
     return this.service.autoComplete(keyword).pipe(
       // Prefix the single word with the rest of the phrase
-      map(suggestions => suggestions.items.map(s => prefix + SPACE + s)),
+      map(suggestions => suggestions.items.map(s => prefix + s)),
       // if no search results, the return the orginal phrase
       map(suggestions => (suggestions.length === 0 ? [value] : suggestions)),
       catchError(error => {
