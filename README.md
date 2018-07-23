@@ -4,7 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The development server consist of two parts. The Angular UI and a mock backend.
+
+To start the UI and Mock backend use `npm run dev`
+
+To only start the angular UI, use `npm run start`
+
+To only start the mock backend use `npm run mock:server`
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
