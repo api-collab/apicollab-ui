@@ -5,6 +5,7 @@ import { map, startWith, switchMap, debounceTime, distinctUntilChanged, catchErr
 import { ApiInfoService } from '../../../core/services/api-info/api-info.service';
 import { FormControl } from '@angular/forms';
 import { MatAutocomplete } from '@angular/material';
+import { MatAutocompleteTrigger} from '@angular/material';
 
 const SPACE = ' ';
 const EMPTY_STRING = '';
@@ -17,6 +18,7 @@ export class SearchBoxComponent implements OnInit {
   /**
    *
    */
+   @ViewChild(MatAutocompleteTrigger) trigger;
   @Output() searchTerms = new EventEmitter<String>();
   myControl = new FormControl();
   filteredOptions$: Observable<string[]>;
@@ -36,6 +38,7 @@ export class SearchBoxComponent implements OnInit {
   }
 
   onOptionSelected(autocomplete: MatAutocomplete, value: string) {
+    this.trigger.closePanel();
     this.searchTerms.emit(value);
   }
 
