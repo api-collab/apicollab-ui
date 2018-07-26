@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ComponentFixtureAutoDetect } from '@angular/core/testing';
 
