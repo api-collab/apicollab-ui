@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  API_ROOT: 'http://localhost:4200/mock-api'
+  API_ROOT: '/mock-api'
 };
