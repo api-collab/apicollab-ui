@@ -1,5 +1,5 @@
 <div class="search-results-wrapper">
-  <div *ngIf="'items' && 'items.length > 0';then results else noResults"></div>
+  <div *ngIf="items && items.length > 0; then results else noResults"></div>
 
   <ng-template #results>
     <div class="search-result" *ngFor="let apiInfo of items; let i = index">
