@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  API_ROOT: '/mock-api'
+  API_ROOT: '/api'
 };
