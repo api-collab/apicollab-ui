@@ -32,6 +32,7 @@ export class ApiInfoService {
       // if not search term, return all
       return this.http.get<WrappedCollection<ApiInfo>>(apiInfoUrl);
     }
+    term = encodeURI(term);
     const url = `${apiInfoUrl}/search?query=${term}`;
     return this.http.get<WrappedCollection<ApiInfo>>(url).pipe(
       tap(() => console.log(`fetched search results`)),
