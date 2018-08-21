@@ -37,7 +37,7 @@ export class SearchBoxComponent implements OnInit {
     );
   }
 
-  onOptionSelected(autocomplete: MatAutocomplete, value: string) {
+  onOptionSelected(value: string) {
     this.trigger.closePanel();
     this.searchTerms.emit(value);
   }

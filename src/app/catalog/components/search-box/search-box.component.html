@@ -2,9 +2,9 @@
   <form>
     <mat-form-field class="search-form" color="primary">
       <input type="text" class="search-input-box" placeholder="What are you looking for today?" matInput [formControl]="myControl"
-        [matAutocomplete]="auto" #searchInput (keyup.enter)="onOptionSelected(auto, searchInput.value)">
+        [matAutocomplete]="auto" #searchInput (keyup.enter)="onOptionSelected(searchInput.value)">
       <mat-icon matSuffix>search</mat-icon>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected(this, $event.option.value)">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
         <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
           {{option}}
         </mat-option>
