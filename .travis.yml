@@ -20,7 +20,7 @@ script:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BUILD_NUMBER; fi`
-  - export IMAGE_NAME=apicollab/web-ui'
-  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT --build-arg JAR_FILE=${JAR_FILE} .
+  - export IMAGE_NAME='apicollab/web-ui'
+  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
   - docker tag $IMAGE_NAME:$TRAVIS_COMMIT $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME
