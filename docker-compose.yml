@@ -1,0 +1,44 @@
+version: '3'
+services:
+  server:
+    container_name: apicollab-server
+    image: apicollab/server
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SERVER_PORT=80
+    ports:
+      - 8000:80 # map localhost:8000 to 80
+    depends_on:
+      - db
+    networks:
+      - api-collab-network
+  db:
+    image: postgres
+    volumes:
+      - apicollab:/var/lib/postgresql/data
+    ports:
+      - 5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: apicollab
+    networks:
+      - api-collab-network
+  ui:
+    container_name: apicollab-ui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: apicollab:web-ui
+    ports:
+      - 9400:80
+    networks:
+      - api-collab-network
+    depends_on:
+      - server
+volumes:
+  ? apicollab
+networks:
+  api-collab-network:
+    driver: bridge
