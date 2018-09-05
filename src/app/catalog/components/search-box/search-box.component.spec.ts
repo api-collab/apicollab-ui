@@ -17,7 +17,8 @@ import { WrappedCollection } from '../../../core/models/wrapped-collection';
 
 @Component({
   template:
-    '<app-search-box class="search-box-container" [initialValue]="initialValue" (searchTerms)="onSearchTerms($event)"></app-search-box><h1>{{initialValue}}'
+    '<app-search-box class="search-box-container" ' +
+    '[initialValue]="initialValue" (searchTerms)="onSearchTerms($event)"></app-search-box>'
 })
 class TestHostComponent {
   initialValue = '';
@@ -90,7 +91,6 @@ describe('SearchBoxComponent', () => {
     hostComponent.initialValue = text;
     hostFixture.detectChanges();
     hostFixture.whenStable().then(() => {
-      expect(hostFixture.nativeElement.querySelector('h1').innerText).toBe(text);
       expect(hostComponent.currentSearchTerm).toBe(null);
       expect(inputTextFieldEl.value).toBe(text);
     });
