@@ -2,8 +2,8 @@ $menu-height: 64px;
 $search-input-height: 64px;
 
 .spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
 .title {
   margin-right: 30px;
@@ -19,31 +19,7 @@ $search-input-height: 64px;
   color: #fff;
 }
 
-.search-box-container {
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  position: absolute;
-  height: $menu-height;
-  padding-left: 10px;
-  background: white;
-}
-
-.search-box-input {
-  height: $search-input-height;
-  width: 100%;
-  border: 0;
-  line-height: 25px;
-  padding: 10px;
-  font-size: 22px;
-  padding: 0;
-}
-
-.search-box-button {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  color: #67757c;
-  cursor: pointer;
+a {
+  color: #ffffff;
+  text-decoration: none;
 }
