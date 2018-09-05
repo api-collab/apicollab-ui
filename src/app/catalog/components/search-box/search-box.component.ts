@@ -1,11 +1,20 @@
-import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, startWith, switchMap, debounceTime, distinctUntilChanged, catchError, distinct } from 'rxjs/operators';
+import {
+  map,
+  startWith,
+  switchMap,
+  debounceTime,
+  distinctUntilChanged,
+  catchError,
+  distinct,
+  tap
+} from 'rxjs/operators';
 
 import { ApiInfoService } from '../../../core/services/api-info/api-info.service';
 import { FormControl } from '@angular/forms';
 import { MatAutocomplete } from '@angular/material';
-import { MatAutocompleteTrigger} from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material';
 
 const SPACE = ' ';
 const EMPTY_STRING = '';
@@ -14,14 +23,31 @@ const EMPTY_STRING = '';
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnChanges {
   /**
-   *
+   * View Child for autocomplete dropdown
    */
-   @ViewChild(MatAutocompleteTrigger) trigger;
-  @Output() searchTerms = new EventEmitter<String>();
+  @ViewChild(MatAutocompleteTrigger)
+  trigger;
+
+  /**
+   * Each time user presses enter or selects an item from the autocomplete, the current search phrase is emitted
+   */
+  @Output()
+  searchTerms = new EventEmitter<string>();
+
+  /**
+   * Search Input
+   */
   myControl = new FormControl();
+
   filteredOptions$: Observable<string[]>;
+
+  /**
+   * Sets the inital value of the search box
+   */
+  @Input()
+  initialValue: string;
 
   constructor(private service: ApiInfoService) {}
 
@@ -37,6 +63,14 @@ export class SearchBoxComponent implements OnInit {
     );
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // If the inital value has been changed, then set the text box value as that.
+    const change = changes.initialValue;
+    if (change && change.currentValue !== change.previousValue) {
+      this.myControl.setValue(change.currentValue);
+    }
+  }
+
   onOptionSelected(value: string) {
     this.trigger.closePanel();
     this.searchTerms.emit(value);
@@ -46,7 +80,6 @@ export class SearchBoxComponent implements OnInit {
     let searchPhrase = value || EMPTY_STRING;
     searchPhrase = searchPhrase.trim();
     if (searchPhrase === EMPTY_STRING) {
-      this.searchTerms.emit(EMPTY_STRING);
       return of([]);
     }
     const middlePoint = searchPhrase.lastIndexOf(SPACE);
