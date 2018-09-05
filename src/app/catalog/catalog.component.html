@@ -3,7 +3,7 @@
   <mat-card>
     <div class="hero">
       <h2 class="mat-display-2">Explore.Build.Amaze</h2>
-      <app-search-box class="search-box-container" (searchTerms)="onSearchTerms($event)"></app-search-box>
+      <app-search-box class="search-box-container" [initialValue]="searchPhrase" (searchTerms)="onSearchTerms($event)"></app-search-box>
     </div>
   </mat-card>
   <!-- Search Results-->
