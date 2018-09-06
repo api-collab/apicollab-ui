@@ -23,19 +23,10 @@
   font-size: 17px;
   top: 1px;
 }
-
-/*Resize the wrap to see the search bar change!*/
-
 .search-form {
   width: 100%;
 }
-.searchbox {
-  width: 60%;
-  position: absolute;
-  left: 50%;
-  top: 129px;
-  transform: translate(-50%, -50%);
-}
+
 .autocomplete-list {
   position: absolute;
   top: 33px;

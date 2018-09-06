@@ -1,16 +1,16 @@
 <div class="root">
   <!-- Hero -->
-  <mat-card>
-    <div class="hero">
-      <h2 class="mat-display-2">Explore.Build.Amaze</h2>
-      <app-search-box class="search-box-container" [initialValue]="searchPhrase" (searchTerms)="onSearchTerms($event)"></app-search-box>
+  <mat-card class="hero">
+    <div class="hero-contents">
+      <h2 class="hero-title">API CATALOG</h2>
+      <app-search-box [initialValue]="searchPhrase" (searchTerms)="onSearchTerms($event)"></app-search-box>
     </div>
   </mat-card>
   <!-- Search Results-->
   <div class="search-results-container">
     <div *ngIf="searchApiResults$ | async as results">
       <!-- Search Results -->
-      <p>Query returned {{results.items.length}} result(s) for
+      <p *ngIf="results.items.length > 0">Query returned {{results.items.length}} result(s) for
         <i>{{searchPhrase}}</i>
       </p>
       <app-catalog-list [items]="results.items"></app-catalog-list>

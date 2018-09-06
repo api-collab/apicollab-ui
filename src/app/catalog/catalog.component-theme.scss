@@ -6,18 +6,13 @@
   $forground: map-get($theme, foreground);
 
   .hero {
-    background-color: mat-color($primary, default-contrast);
+    background: mat-color($primary);
+    background-image: linear-gradient(to right, mat-color($primary, darker), mat-color($primary));
   }
-
-  .searchTerm {
-    border-color: mat-color($primary);
-    color: black;
-    border-style: solid;
+  .hero-title {
+    color: mat-color($primary, default-contrast);
   }
-
-  .searchButton {
-    border: 1px solid mat-color($accent);
-    background: mat-color($accent);
-    color: #fff;
+  .hero-contents {
+    color: white;
   }
 }

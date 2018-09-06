@@ -14,12 +14,24 @@ $search-input-height: 64px;
   margin-right: 10px;
 }
 
-.mat-toolbar.mat-primary {
-  background: #1e88e5;
-  color: #fff;
+a {
+  text-decoration: none;
 }
 
-a {
-  color: #ffffff;
-  text-decoration: none;
+.breadcrumb-text {
+  font-size: small;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.navigation-toolbar {
+  z-index: 1;
+}
+
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }

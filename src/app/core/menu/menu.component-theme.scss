@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+
+@mixin menu-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $forground: map-get($theme, foreground);
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}

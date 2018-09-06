@@ -1,12 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
-<app-menu [sideBar]="sideBar"></app-menu>
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #sideBar class="example-sidenav" mode="over">
-        <app-sidebar [sideBar]="sideBar"></app-sidebar>
-    </mat-drawer>
-    <div class="main-content">
+<div class="root">
+  <app-menu [sideBar]="sideBar"></app-menu>
+  <mat-sidenav-container class="example-container" CdkScrollable>
+    <mat-sidenav-content>
+      <div>
         <app-notification></app-notification>
         <router-outlet></router-outlet>
-    </div>
-</mat-drawer-container>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
