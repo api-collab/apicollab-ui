@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as compareVersions from 'compare-versions';
+
 import { ApiInfo } from '../../models/api-info';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -73,6 +75,7 @@ export class ApiInfoService {
     const url = `${environment.API_ROOT}/applications/${applicationId}/apis`;
     return this.http.get<WrappedCollection<ApiInfo>>(url).pipe(
       tap(() => console.log(`fetched apis for application ${applicationId}`)),
+      tap(collection => this.sortApiInfoVersions(collection.items)),
       catchError(this.handleError(NotifErrorGetApplicationApis, new WrappedCollection<ApiInfo>()))
     );
   }
@@ -91,5 +94,9 @@ export class ApiInfoService {
       }
       return of(result);
     };
+  }
+
+  private sortApiInfoVersions(items: Array<ApiInfo>) {
+    items.sort((a, b) => -1 * compareVersions(a.version, b.version));
   }
 }
