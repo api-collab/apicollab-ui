@@ -1,34 +1,32 @@
 <div class="root">
-    <!-- <div class="jumbo mat-elevation-2">
-        <div class="api-info-container">
-            <div class="api-info-container-left">
-                <img src="http://via.placeholder.com/150x150">
-            </div>
-            <div class="api-info-container-right">
-                <span class="api-info-title">{{(apiInfo$ | async)?.name}}</span>
-                <p class="api-info-descripion">{{(apiInfo$ | async)?.description}}</p>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="api-navigation">
-        <mat-tab-group class="mat-accent " [backgroundColor]="accent">
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <mat-form-field>
-                        <mat-select panelClass="example-panel" placeholder="Favorite food">
-                            <mat-option [value]="1.0">
-                                Ver 1.0.1
+    <div *ngIf="apiInfo$ | async as apiInfo">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row class="mat-elevation-2">
+                <span *ngIf="applicationInfo$ | async as applicationInfo" class="breadcrumb-title">{{applicationInfo.name}}</span>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+                <span class="breadcrumb-title">{{apiInfo.name}}</span>
+
+                <span class="spacer"></span>
+
+                <!--Version dropdown-->
+                <div *ngIf="versions$ | async as versions">
+                    <mat-form-field color="primary" class="version-select">
+                        <mat-select [value]="apiInfo.id" (selectionChange)="onVersionSelected($event.value)">
+                            <mat-option *ngFor="let version of versions.items" [value]="version.id">
+                                v{{version.version}}
+                                <span *ngIf="version.status == 'BETA'">
+                                    <mat-chip color="primary" selected>{{version.status}}</mat-chip>
+                                </span>
+                                <span *ngIf="version.status == 'DEPRECATED'">
+                                    <mat-chip color="accent" selected>{{version.status}}</mat-chip>
+                                </span>
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                </ng-template>
-
-            </mat-tab>
-            <mat-tab label="Version 2.0"></mat-tab>
-        </mat-tab-group>
-    </div> -->
-    <div id="swagger-ui">
-
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
     </div>
-
+    <div id="swagger-ui">
+    </div>
 </div>

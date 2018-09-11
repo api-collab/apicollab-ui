@@ -5,6 +5,9 @@
   $accent: map-get($theme, accent);
   $forground: map-get($theme, foreground);
 
+  .divider-pipe {
+    color: mat-color($primary, darker);
+  }
   a {
     color: #ffffff;
     text-decoration: none;
