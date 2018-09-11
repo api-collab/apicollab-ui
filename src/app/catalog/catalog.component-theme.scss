@@ -6,13 +6,10 @@
   $forground: map-get($theme, foreground);
 
   .hero {
-    background: mat-color($primary);
-    background-image: linear-gradient(to right, mat-color($primary, darker), mat-color($primary));
+    background: white;
+    color: grey;
   }
   .hero-title {
-    color: mat-color($primary, default-contrast);
-  }
-  .hero-contents {
-    color: white;
+    color: grey;
   }
 }

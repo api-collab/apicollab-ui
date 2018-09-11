@@ -1,10 +1,10 @@
 <div class="searchbox">
   <form>
-    <mat-form-field class="search-form" color="accent" appearance="outline">
+    <mat-form-field class="search-form" color="primary" appearance="outline">
       <!-- <mat-label>Search</mat-label> -->
       <mat-hint>Start typing for search suggestions</mat-hint>
-      <input type="text" class="search-input-box" matInput [formControl]="myControl" placeholder="Search" [matAutocomplete]="auto"
-        #searchInput (keyup.enter)="onOptionSelected(searchInput.value)">
+      <input type="text" class="search-input-box" matInput [formControl]="myControl" placeholder="Search"
+        [matAutocomplete]="auto" #searchInput (keyup.enter)="onOptionSelected(searchInput.value)">
       <mat-icon matSuffix>search</mat-icon>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
         <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
