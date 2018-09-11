@@ -49,8 +49,8 @@ var generateSuggestions = function() {
 };
 
 module.exports = () => {
-  const apps = generateApplications();
-  const apis = generateAPIs(apps);
+  const applications = generateApplications();
+  const apis = generateAPIs(applications);
   const suggestions = generateSuggestions();
-  return { apis, suggestions, apps };
+  return { apis, suggestions, applications };
 };
