@@ -11,10 +11,15 @@ import { Notification } from '../../models/notification';
 import { NotificationType } from '../../models/notification-type';
 
 const apiInfoUrl = `${environment.API_ROOT}/apis`;
+
 const NotifErrorAutoComplete = new Notification('Failed to fetch autocomplete suggestions', NotificationType.Failed);
 const NotifErrorSearchApi = new Notification('Failed to search for APIs', NotificationType.Failed);
 const NotifErrorListApi = new Notification('Failed to list all APIs', NotificationType.Failed);
 const NotifErrorGetApi = new Notification('Failed to retrieve the API', NotificationType.Failed);
+const NotifErrorGetApplicationApis = new Notification(
+  'Failed to fetch APIs for this application',
+  NotificationType.Failed
+);
 
 @Injectable()
 export class ApiInfoService {
@@ -58,6 +63,17 @@ export class ApiInfoService {
     return this.http.get<ApiInfo>(url).pipe(
       tap(() => console.log(`fetched API`)),
       catchError(this.handleError(NotifErrorGetApi, null))
+    );
+  }
+
+  /**
+   * Get Apis for a given application Id
+   */
+  getApisForApplicationId(applicationId: string): Observable<WrappedCollection<ApiInfo>> {
+    const url = `${environment.API_ROOT}/applications/${applicationId}/apis`;
+    return this.http.get<WrappedCollection<ApiInfo>>(url).pipe(
+      tap(() => console.log(`fetched apis for application ${applicationId}`)),
+      catchError(this.handleError(NotifErrorGetApplicationApis, new WrappedCollection<ApiInfo>()))
     );
   }
 
