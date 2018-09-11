@@ -1,9 +1,10 @@
 export class ApiInfo {
-    apiId: String;
-    name: String;
-    desription: String;
-    version: String;
-    apiSpec: String;
-    status: String;
-    tags: Array<String>;
+  apiId: string;
+  name: string;
+  desription: string;
+  version: string;
+  apiSpec: string;
+  status: string;
+  tags: Array<string>;
+  applicationId: string;
 }

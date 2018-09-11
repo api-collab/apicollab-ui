@@ -57,4 +57,36 @@ describe('ApiInfoService', () => {
     expect(req.request.urlWithParams).toEqual(urlWithQuery);
     req.flush(dummyData);
   }));
+
+  it('should be get the apis for a given application id', inject([ApiInfoService], (service: ApiInfoService) => {
+    expect(service).toBeTruthy();
+    httpMock = testBed.get(HttpTestingController);
+    const dummyData = {
+      totalCount: 1,
+      items: [
+        {
+          apiId: 'string',
+          applicationId: '123456',
+          name: 'string',
+          version: 'string',
+          status: 'BETA'
+        }
+      ]
+    };
+
+    const appId = '123456';
+    const url = `${environment.API_ROOT}/applications/${appId}/apis`;
+
+    service.getApisForApplicationId(appId).subscribe(response => {
+      expect(response.totalCount).toEqual(1);
+      const api = response.items[0];
+      expect(api).toBeTruthy();
+      expect(api.applicationId).toEqual(appId);
+      expect(api.apiId).toEqual(dummyData.items[0].apiId);
+    });
+
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyData);
+  }));
 });

@@ -9,19 +9,36 @@ var generateRandomWord = function() {
 };
 
 /**
- * Generate a set of Apis
+ * Generate a set of applications
  */
-var generateAPIs = function() {
+var generateApplications = function() {
+  const apps = [];
+  for (let i = 0; i < 5; i++) {
+    apps.push({
+      name: generateRandomWord(),
+      email: faker.internet.email(),
+      id: faker.random.uuid()
+    });
+  }
+  return apps;
+};
+
+/**
+ * Generate a set of Apis for a given set of apps
+ */
+var generateAPIs = function(apps) {
   const apis = [];
   for (let i = 0; i < 20; i++) {
+    const appId = faker.random.arrayElement(apps).id;
     apis.push({
       name: `${generateRandomWord()} ${generateRandomWord()} ${generateRandomWord()} ${generateRandomWord()} `,
       version: faker.random.arrayElement(['1.0.1', '2.0.0', '3.5.9']),
       description: faker.lorem.sentence(),
-      status: 'BETA',
+      status: faker.random.arrayElement(['BETA', 'STABLE', 'DEPRECATED']),
       tags: [generateRandomWord(), generateRandomWord(), generateRandomWord()],
       swaggerDefinition: null,
-      id: faker.random.uuid()
+      id: faker.random.uuid(),
+      applicationId: appId
     });
   }
   return apis;
@@ -32,7 +49,8 @@ var generateSuggestions = function() {
 };
 
 module.exports = () => {
-  const apis = generateAPIs();
+  const applications = generateApplications();
+  const apis = generateAPIs(applications);
   const suggestions = generateSuggestions();
-  return { apis, suggestions };
+  return { apis, suggestions, applications };
 };
