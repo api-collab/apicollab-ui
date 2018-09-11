@@ -34,7 +34,7 @@ var generateAPIs = function(apps) {
       name: `${generateRandomWord()} ${generateRandomWord()} ${generateRandomWord()} ${generateRandomWord()} `,
       version: faker.random.arrayElement(['1.0.1', '2.0.0', '3.5.9']),
       description: faker.lorem.sentence(),
-      status: 'BETA',
+      status: faker.random.arrayElement(['BETA', 'STABLE', 'DEPRECATED']),
       tags: [generateRandomWord(), generateRandomWord(), generateRandomWord()],
       swaggerDefinition: null,
       id: faker.random.uuid(),
