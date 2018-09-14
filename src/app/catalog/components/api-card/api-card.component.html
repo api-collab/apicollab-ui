@@ -7,10 +7,9 @@
       </mat-card-header>
       <mat-card-actions class="api-card-action">
         <mat-chip-list>
-          <mat-chip *ngFor="let tag of apiInfo?.tags">
+          <mat-chip *ngFor="let tag of allTags">
             {{tag}}
           </mat-chip>
-          <mat-chip>v{{apiInfo.version}}</mat-chip>
         </mat-chip-list>
       </mat-card-actions>
     </mat-card>
