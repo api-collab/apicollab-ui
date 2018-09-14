@@ -10,6 +10,7 @@ import { ApplicationInfo } from '../core/models/application-info';
 import { ApplicationInfoService } from '../core/services/application-info/application-info.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, map, tap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 const SwaggerUI = require('swagger-ui');
 
@@ -31,11 +32,13 @@ export class ApiPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private apiInfoService: ApiInfoService,
-    private applicationInfoService: ApplicationInfoService
+    private applicationInfoService: ApplicationInfoService,
+    private titleService: Title
   ) {
     this.el = _elemRef;
   }
   ngOnInit() {
+    this.titleService.setTitle('API - Loading');
     this.route.paramMap.subscribe(param => {
       this.apiId = param.get('apiId');
       this.fetchApiInfo(param.get('apiId'));
@@ -59,6 +62,7 @@ export class ApiPageComponent implements OnInit {
   fetchApiInfo(id: string) {
     console.log('Fetching API');
     this.apiInfo$ = this.apiInfoService.getApi(id);
+    this.apiInfo$.subscribe(info => this.titleService.setTitle(`API - ${info.name} - ${info.version}`));
     this.apiInfo$.subscribe(info => this.fetchVersions(info.applicationId));
     this.apiInfo$.subscribe(info => this.fetchApplicationInfo(info.applicationId));
   }
