@@ -6,6 +6,7 @@ import { distinctUntilChanged, switchMap, catchError, tap } from 'rxjs/operators
 import { WrappedCollection } from '../core/models/wrapped-collection';
 import { ApiInfo } from '../core/models/api-info';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-catalog',
@@ -17,7 +18,14 @@ export class CatalogComponent implements OnInit {
   apis$: Observable<WrappedCollection<ApiInfo>>;
   searchApiResults$: Observable<WrappedCollection<ApiInfo>>;
   searchPhrase = '';
-  constructor(private service: ApiInfoService, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private service: ApiInfoService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('API Catalog');
+  }
 
   // Navigate to a new URL with the search query updated
   onSearchTerms(terms: string) {
