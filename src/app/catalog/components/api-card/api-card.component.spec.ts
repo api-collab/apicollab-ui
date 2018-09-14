@@ -37,7 +37,7 @@ describe('ApiCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should assign the initial value from parent', async(() => {
+  it('should not render empty tags', async(() => {
     expect(component).toBeTruthy();
     const dummy = new ApiInfo();
     dummy.apiId = '1';
