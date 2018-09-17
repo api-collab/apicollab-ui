@@ -13,11 +13,15 @@ var generateRandomWord = function() {
  */
 var generateApplications = function() {
   const apps = [];
+  const categories = ['Commerce', 'Entertainment', 'Communications', 'Gaming', 'Education'];
   for (let i = 0; i < 5; i++) {
+    const appId = faker.random.uuid();
     apps.push({
       name: generateRandomWord(),
       email: faker.internet.email(),
-      id: faker.random.uuid()
+      id: appId,
+      applicationId: appId,
+      category: faker.random.arrayElement(categories)
     });
   }
   return apps;

@@ -42,12 +42,6 @@ describe('CatalogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch all on page load', () => {
-    const getAllSpy = spyOn(apiInfoService, 'getAll');
-    component.ngOnInit();
-    expect(getAllSpy).toHaveBeenCalled();
-  });
-
   it('should navigate to a new url location when performing a new search with different keywords', () => {
     const router = TestBed.get(Router);
     const routerSpy = spyOn(router, 'navigate');

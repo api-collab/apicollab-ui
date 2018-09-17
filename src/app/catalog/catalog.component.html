@@ -6,20 +6,15 @@
       <app-search-box [initialValue]="searchPhrase" (searchTerms)="onSearchTerms($event)"></app-search-box>
     </div>
   </mat-card>
+
   <!-- Search Results-->
   <div class="search-results-container">
-    <div *ngIf="searchApiResults$ | async as results">
+    <div *ngIf="searchApiApplicationInfo$ | async as results">
       <!-- Search Results -->
-      <p *ngIf="results.items.length > 0">Query returned {{results.items.length}} result(s) for
+      <p *ngIf="searchPhrase">Query returned {{results.items.length}} result(s) for
         <i>{{searchPhrase}}</i>
       </p>
       <app-catalog-list [items]="results.items"></app-catalog-list>
-    </div>
-
-    <div *ngIf="searchPhrase.length === 0">
-      <div *ngIf="apis$ | async as results">
-        <app-catalog-list [items]="results.items"></app-catalog-list>
-      </div>
     </div>
   </div>
 </div>

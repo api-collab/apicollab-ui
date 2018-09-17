@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiInfo } from '../../../core/models/api-info';
+import { ApplicationInfo } from '../../../core/models/application-info';
 @Component({
   selector: 'app-api-card',
   templateUrl: './api-card.component.html',
@@ -8,6 +9,8 @@ import { ApiInfo } from '../../../core/models/api-info';
 export class ApiCardComponent implements OnChanges {
   @Input()
   apiInfo: ApiInfo;
+  @Input()
+  applicationInfo: ApplicationInfo;
   allTags: string[];
 
   constructor() {}
@@ -16,6 +19,7 @@ export class ApiCardComponent implements OnChanges {
     const change = changes.apiInfo;
     if (change && change.currentValue !== change.previousValue) {
       this.apiInfo = change.currentValue;
+      this.applicationInfo = changes.applicationInfo.currentValue;
       this.allTags = this.buildTags();
     }
   }

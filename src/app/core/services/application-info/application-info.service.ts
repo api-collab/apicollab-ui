@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment';
 import { NotificationService } from '../notification/notification.service';
 import { Notification } from '../../models/notification';
 import { NotificationType } from '../../models/notification-type';
+import { WrappedCollection } from '../../models/wrapped-collection';
 
 const applicationInfoUrl = `${environment.API_ROOT}/applications`;
 const NotifErrorGetApplication = new Notification('Failed to retrieve the application info', NotificationType.Failed);
@@ -27,6 +28,17 @@ export class ApplicationInfoService {
     return this.http.get<ApplicationInfo>(url).pipe(
       tap(() => console.log(`fetched application info for ${applicationId}`)),
       catchError(this.handleError(NotifErrorGetApplication, new ApplicationInfo()))
+    );
+  }
+  /**
+   * Get Application Info for a given API
+   * @param applicationId
+   */
+  getAll(): Observable<WrappedCollection<ApplicationInfo>> {
+    const url = `${applicationInfoUrl}`;
+    return this.http.get<WrappedCollection<ApplicationInfo>>(url).pipe(
+      tap(() => console.log(`fetched all applications`)),
+      catchError(this.handleError(NotifErrorGetApplication, new WrappedCollection<ApplicationInfo>()))
     );
   }
 
