@@ -2,8 +2,8 @@
   <div *ngIf="items && items.length > 0; then results else noResults"></div>
 
   <ng-template #results>
-    <div class="search-result" *ngFor="let apiInfo of items; let i = index">
-      <app-api-card [apiInfo]=apiInfo></app-api-card>
+    <div class="search-result" *ngFor="let apiAppInfo of items; let i = index">
+      <app-api-card [apiInfo]=apiAppInfo.apiInfo [applicationInfo]=apiAppInfo.applicationInfo></app-api-card>
     </div>
   </ng-template>
   <ng-template #noResults>

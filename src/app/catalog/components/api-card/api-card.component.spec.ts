@@ -8,12 +8,14 @@ import { ApiInfo } from '../../../core/models/api-info';
 import { By } from '@angular/platform-browser';
 import { MatChip } from '@angular/material';
 import { Component } from '@angular/core';
+import { ApplicationInfo } from '../../../core/models/application-info';
 
 @Component({
-  template: '<app-api-card class="app-api-card" [apiInfo]="apiInfo"></app-api-card>'
+  template: '<app-api-card class="app-api-card" [apiInfo]="apiInfo" [applicationInfo]="applicationInfo"></app-api-card>'
 })
 class TestHostComponent {
   apiInfo: ApiInfo;
+  applicationInfo: ApplicationInfo;
 }
 
 describe('ApiCardComponent', () => {
@@ -47,7 +49,12 @@ describe('ApiCardComponent', () => {
     dummy.status = 'BETA';
     dummy.tags = ['hello', '', 'world'];
     dummy.version = ''; // empty tag
+
+    const dummyApplication = new ApplicationInfo();
+    dummyApplication.name = 'Dummy App';
+
     component.apiInfo = dummy;
+    component.applicationInfo = dummyApplication;
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const elements = fixture.debugElement.queryAll(By.directive(MatChip));
